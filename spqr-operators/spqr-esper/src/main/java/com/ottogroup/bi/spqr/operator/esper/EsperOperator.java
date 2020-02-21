@@ -121,21 +121,7 @@ public class EsperOperator implements DelayedResponseOperator {
 		// create esper configuration
 
 		Configuration esperConfiguration = new Configuration();
-		for(final String event : eventConfiguration.keySet()) {
-			Map<String, String> ec = eventConfiguration.get(event);
-			if(ec != null && !ec.isEmpty()) {
-				Map<String, Object> typeDefinition = new HashMap<>();
-				for(final String typeDefName : ec.keySet()) {
-					final String typeDefType = ec.get(typeDefName);					
-					try {
-						typeDefinition.put(typeDefName, Class.forName(typeDefType));
-					} catch(ClassNotFoundException e) {
-						throw new ComponentInitializationFailedException("Failed to lookup provided type '"+typeDefType+"' for event '"+event+"'. Error: " + e.getMessage());
-					}
-				}
-				esperConfiguration.addEventType(event, typeDefinition);			
-			}			
-		}
+		extracted(eventConfiguration, esperConfiguration);
 
 		Map<String, Object> spqrDefaultTypeDefinition = new HashMap<>();
 		spqrDefaultTypeDefinition.put(SPQR_EVENT_TIMESTAMP_FIELD, Long.class);
@@ -160,6 +146,25 @@ public class EsperOperator implements DelayedResponseOperator {
 		
 		this.esperRuntime = this.esperServiceProvider.getEPRuntime();
 		///////////////////////////////////////////////////////////////////////////////////
+	}
+
+	private void extracted(Map<String, Map<String, String>> eventConfiguration, Configuration esperConfiguration)
+			throws com.ottogroup.bi.spqr.operator.esper.ComponentInitializationFailedException {
+		for(final String event : eventConfiguration.keySet()) {
+			Map<String, String> ec = eventConfiguration.get(event);
+			if(ec != null && !ec.isEmpty()) {
+				Map<String, Object> typeDefinition = new HashMap<>();
+				for(final String typeDefName : ec.keySet()) {
+					final String typeDefType = ec.get(typeDefName);					
+					try {
+						typeDefinition.put(typeDefName, Class.forName(typeDefType));
+					} catch(ClassNotFoundException e) {
+						throw new ComponentInitializationFailedException("Failed to lookup provided type '"+typeDefType+"' for event '"+event+"'. Error: " + e.getMessage());
+					}
+				}
+				esperConfiguration.addEventType(event, typeDefinition);			
+			}			
+		}
 	}
 
 	/**
