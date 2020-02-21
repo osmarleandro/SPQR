@@ -35,6 +35,8 @@ public interface DelayedResponseOperator extends Operator {
 	 */
 	public static final String CFG_WAIT_STRATEGY_NAME = StreamingDataMessage.CFG_WAIT_STRATEGY_NAME;
 	public static final String CFG_WAIT_STRATEGY_SETTINGS_PREFIX = "waitStrategy.cfg.";
+	/** component identifier assigned by caller */
+	String id = null;
 	
 	/**
 	 * Provides a new message to the operator
@@ -55,6 +57,8 @@ public interface DelayedResponseOperator extends Operator {
 	 */
 	public long getNumberOfMessagesSinceLastResult();
 	
+	long getTotalNumOfMessages();
+
 	/**
 	 * Assigns the {@link DelayedResponseOperatorWaitStrategy} used for triggering result retrieval 
 	 * @param waitStrategy
