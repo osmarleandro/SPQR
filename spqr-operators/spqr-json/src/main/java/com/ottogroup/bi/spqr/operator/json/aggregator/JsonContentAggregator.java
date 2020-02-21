@@ -15,11 +15,8 @@
  */
 package com.ottogroup.bi.spqr.operator.json.aggregator;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
@@ -46,7 +43,7 @@ import com.ottogroup.bi.spqr.pipeline.message.StreamingDataMessage;
 public class JsonContentAggregator implements DelayedResponseOperator {
 
 	/** our faithful logging facility .... ;-) */
-	private static final Logger logger = Logger.getLogger(JsonContentAggregator.class);
+	public static final Logger logger = Logger.getLogger(JsonContentAggregator.class);
 	
 	////////////////////////////////////////////////////////////////////////
 	// available settings
@@ -64,21 +61,21 @@ public class JsonContentAggregator implements DelayedResponseOperator {
 	/** component identifier assigned by caller */
 	private String id = null;
 	/** maps inbound strings into object representations and json strings vice versa */
-	private final ObjectMapper jsonMapper = new ObjectMapper();
+	public final ObjectMapper jsonMapper = new ObjectMapper();
 	/** identifier as assigned to surrounding pipeline */
-	private String pipelineId = null;
+	public String pipelineId = null;
 	/** document identifier added to each output message */
-	private String documentType = null;
+	public String documentType = null;
 	/** overall number of messages processed */ 
-	private long messageCount = 0;
+	public long messageCount = 0;
 	/** number of messages processed since last result collection */	
-	private long messagesSinceLastResult = 0;
+	public long messagesSinceLastResult = 0;
 	/** store and forward raw data - default: true */
-	private boolean storeForwardRawData = true;
+	public boolean storeForwardRawData = true;
 	/** fields considered to be relevant mapped to aggregator that must be applied to values - none = data is added to raw output only */
-	private List<JsonContentAggregatorFieldSetting> fields = new ArrayList<>();
+	public List<JsonContentAggregatorFieldSetting> fields = new ArrayList<>();
 	/** result document - reset after specified duration */
-	private JsonContentAggregatorResult resultDocument = null;
+	public JsonContentAggregatorResult resultDocument = null;
 
 	/**
 	 * @see com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponent#initialize(java.util.Properties)
@@ -134,83 +131,10 @@ public class JsonContentAggregator implements DelayedResponseOperator {
 
 	/**
 	 * @see com.ottogroup.bi.spqr.pipeline.component.operator.DelayedResponseOperator#onMessage(com.ottogroup.bi.spqr.pipeline.message.StreamingDataMessage)
+	 * @deprecated Use {@link com.ottogroup.bi.spqr.pipeline.message.StreamingDataMessage#onMessage(com.ottogroup.bi.spqr.operator.json.aggregator.JsonContentAggregator)} instead
 	 */
-	public void onMessage(StreamingDataMessage message) {		
-		this.messageCount++;
-		this.messagesSinceLastResult++;
-		
-		
-		// do nothing if either the event or the body is empty
-		if(message == null || message.getBody() == null || message.getBody().length < 1)
-			return;
-		
-		JsonNode jsonNode = null;
-		try {
-			jsonNode = jsonMapper.readTree(message.getBody());
-		} catch(IOException e) {
-			logger.error("Failed to read message body to json node. Ignoring message. Error: " + e.getMessage());
-		}
-		
-		// return null in case the message could not be parsed into 
-		// an object representation - the underlying processor does
-		// not forward any NULL messages
-		if(jsonNode == null)
-			return;
-		
-		// initialize the result document if not already done
-		if(this.resultDocument == null)
-			this.resultDocument = new JsonContentAggregatorResult(this.pipelineId, this.documentType);
-		
-		Map<String, Object> rawData = new HashMap<>();
-		// step through fields considered to be relevant, extract values and apply aggregation function
-		for(final JsonContentAggregatorFieldSetting fieldSettings : fields) {
-			
-			// switch between string and numerical field values
-			// string values may be counted only
-			// numerical field values must be summed, min and max computed AND counted 
-			
-			// string values may be counted only
-			if(fieldSettings.getValueType() == JsonContentType.STRING) {
-
-				try {
-					// read value into string representation and add it to raw data dump
-					String value = getTextFieldValue(jsonNode, fieldSettings.getPath());
-					if(storeForwardRawData)
-						rawData.put(fieldSettings.getField(), value);
-					
-					// count occurrences of value
-					try {
-						this.resultDocument.incAggregatedValue(fieldSettings.getField(), value, 1);
-					} catch (RequiredInputMissingException e) {
-						logger.error("Field '"+fieldSettings.getField()+"' not found in event. Ignoring value. Error: " +e.getMessage());
-					}
-				} catch(Exception e) {
-				}
-			} else if(fieldSettings.getValueType() == JsonContentType.NUMERICAL) {			
-				
-				try {
-					// read value into numerical representation and add it to raw data map
-					long value = getNumericalFieldValue(jsonNode, fieldSettings.getPath());
-					if(storeForwardRawData)
-						rawData.put(fieldSettings.getField(), value);
-					
-					// compute min, max and sum and add these values to result document
-					try {
-						this.resultDocument.evalMinAggregatedValue(fieldSettings.getField(), "min", value);
-						this.resultDocument.evalMaxAggregatedValue(fieldSettings.getField(), "max", value);
-						this.resultDocument.incAggregatedValue(fieldSettings.getField(), "sum", value);
-					} catch(RequiredInputMissingException e) {
-						logger.error("Field '"+fieldSettings.getField()+"' not found in event. Ignoring value. Error: " +e.getMessage());
-					}				
-					
-				} catch(Exception e) {
-				}
-			}			
-		}
-		
-		// add raw data to document
-		if(storeForwardRawData)
-			this.resultDocument.addRawData(rawData);
+	public void onMessage(StreamingDataMessage message) {
+		message.onMessage(this);
 	}
 
 	/**
@@ -235,7 +159,7 @@ public class JsonContentAggregator implements DelayedResponseOperator {
 	 * @param fieldPath
 	 * @return
 	 */
-	protected String getTextFieldValue(final JsonNode jsonNode, final String[] fieldPath) {
+	public String getTextFieldValue(final JsonNode jsonNode, final String[] fieldPath) {
 
 		int fieldAccessStep = 0;
 		JsonNode contentNode = jsonNode;
@@ -253,7 +177,7 @@ public class JsonContentAggregator implements DelayedResponseOperator {
 	 * @param fieldPath
 	 * @return
 	 */
-	protected long getNumericalFieldValue(final JsonNode jsonNode, final String[] fieldPath) {
+	public long getNumericalFieldValue(final JsonNode jsonNode, final String[] fieldPath) {
 
 		int fieldAccessStep = 0;
 		JsonNode contentNode = jsonNode;
