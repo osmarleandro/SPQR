@@ -43,6 +43,7 @@ import com.ottogroup.bi.spqr.pipeline.component.operator.TimerBasedResponseWaitS
 import com.ottogroup.bi.spqr.pipeline.component.source.Source;
 import com.ottogroup.bi.spqr.pipeline.component.source.SourceRuntimeEnvironment;
 import com.ottogroup.bi.spqr.pipeline.exception.UnknownWaitStrategyException;
+import com.ottogroup.bi.spqr.pipeline.message.StreamingDataMessage;
 import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueue;
 import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueueConfiguration;
 import com.ottogroup.bi.spqr.pipeline.queue.chronicle.DefaultStreamingMessageQueue;
@@ -347,7 +348,7 @@ public class MicroPipelineFactory {
 			if(!queues.containsKey(StringUtils.lowerCase(StringUtils.trim(componentConfiguration.getFromQueue()))))
 				throw new RequiredInputMissingException("Unknown source queue '"+componentConfiguration.getFromQueue()+"'");
 
-			if(StringUtils.isBlank(componentConfiguration.getSettings().getProperty(DelayedResponseOperator.CFG_WAIT_STRATEGY_NAME)))
+			if(StringUtils.isBlank(componentConfiguration.getSettings().getProperty(StreamingDataMessage.CFG_WAIT_STRATEGY_NAME)))
 				throw new RequiredInputMissingException("Missing required settings for wait strategy applied to delayed response operator");
 
 		////////////////////////////////////////////////////////////////////////////////////
@@ -388,9 +389,9 @@ public class MicroPipelineFactory {
 			throw new RequiredInputMissingException("Missing required delayed response operator configuration");
 		if(delayedResponseOperatorCfg.getSettings() == null)
 			throw new RequiredInputMissingException("Missing required delayed response operator settings");
-		String strategyName = StringUtils.lowerCase(StringUtils.trim(delayedResponseOperatorCfg.getSettings().getProperty(DelayedResponseOperator.CFG_WAIT_STRATEGY_NAME)));
+		String strategyName = StringUtils.lowerCase(StringUtils.trim(delayedResponseOperatorCfg.getSettings().getProperty(StreamingDataMessage.CFG_WAIT_STRATEGY_NAME)));
 		if(StringUtils.isBlank(strategyName)) 
-			throw new RequiredInputMissingException("Missing required strategy name expected as part of operator settings ('"+DelayedResponseOperator.CFG_WAIT_STRATEGY_NAME+"')");
+			throw new RequiredInputMissingException("Missing required strategy name expected as part of operator settings ('"+StreamingDataMessage.CFG_WAIT_STRATEGY_NAME+"')");
 		//
 		/////////////////////////////////////////////////////////////////////////////////////
 		

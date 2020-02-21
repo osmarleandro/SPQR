@@ -46,6 +46,8 @@ public class StreamingDataMessage implements Serializable {
 	/** time the message entered the system */
 	@JsonProperty ( value = "timestamp", required = true )
 	private long timestamp = 0;
+
+	public static final String CFG_WAIT_STRATEGY_NAME = "waitStrategy.name";
 	
 	/**
 	 * Default constructor
