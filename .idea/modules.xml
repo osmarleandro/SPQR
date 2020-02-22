@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spqr-base/spqr-base.iml" filepath="$PROJECT_DIR$/spqr-base/spqr-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spqr-operators/spqr-esper/spqr-esper.iml" filepath="$PROJECT_DIR$/spqr-operators/spqr-esper/spqr-esper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spqr-operators/spqr-json/spqr-json.iml" filepath="$PROJECT_DIR$/spqr-operators/spqr-json/spqr-json.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spqr-operators/spqr-kafka/spqr-kafka.iml" filepath="$PROJECT_DIR$/spqr-operators/spqr-kafka/spqr-kafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spqr-micro-pipeline/spqr-micro-pipeline.iml" filepath="$PROJECT_DIR$/spqr-micro-pipeline/spqr-micro-pipeline.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spqr-node/spqr-node.iml" filepath="$PROJECT_DIR$/spqr-node/spqr-node.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spqr-parent.iml" filepath="$PROJECT_DIR$/spqr-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spqr-repository/spqr-repository.iml" filepath="$PROJECT_DIR$/spqr-repository/spqr-repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spqr-resman/spqr-resman.iml" filepath="$PROJECT_DIR$/spqr-resman/spqr-resman.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spqr-operators/spqr-twitter/spqr-twitter.iml" filepath="$PROJECT_DIR$/spqr-operators/spqr-twitter/spqr-twitter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spqr-websocket-server/spqr-websocket-server.iml" filepath="$PROJECT_DIR$/spqr-websocket-server/spqr-websocket-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spqr-operators/spqr-webtrends/spqr-webtrends.iml" filepath="$PROJECT_DIR$/spqr-operators/spqr-webtrends/spqr-webtrends.iml" />
+    </modules>
+  </component>
+</project>

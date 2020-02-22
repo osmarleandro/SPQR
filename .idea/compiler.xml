@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="spqr-json" />
+        <module name="spqr-node" />
+        <module name="spqr-twitter" />
+        <module name="spqr-resman" />
+        <module name="spqr-websocket-server" />
+        <module name="spqr-webtrends" />
+        <module name="spqr-repository" />
+        <module name="spqr-esper" />
+        <module name="spqr-micro-pipeline" />
+        <module name="spqr-kafka" />
+        <module name="spqr-base" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spqr-base" target="1.7" />
+      <module name="spqr-esper" target="1.7" />
+      <module name="spqr-json" target="1.7" />
+      <module name="spqr-kafka" target="1.7" />
+      <module name="spqr-micro-pipeline" target="1.7" />
+      <module name="spqr-node" target="1.7" />
+      <module name="spqr-parent" target="1.5" />
+      <module name="spqr-repository" target="1.7" />
+      <module name="spqr-resman" target="1.7" />
+      <module name="spqr-twitter" target="1.7" />
+      <module name="spqr-websocket-server" target="1.7" />
+      <module name="spqr-webtrends" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

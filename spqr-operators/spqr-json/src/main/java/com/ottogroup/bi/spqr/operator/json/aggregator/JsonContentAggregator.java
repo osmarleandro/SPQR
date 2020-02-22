@@ -89,28 +89,32 @@ public class JsonContentAggregator implements DelayedResponseOperator {
 		// assign and validate properties
 		if(StringUtils.isBlank(this.id))
 			throw new RequiredInputMissingException("Missing required component identifier");
-		
-		this.pipelineId = StringUtils.trim(properties.getProperty(CFG_PIPELINE_ID));		
-		this.documentType = StringUtils.trim(properties.getProperty(CFG_DOCUMENT_TYPE));
-		if(StringUtils.equalsIgnoreCase(properties.getProperty(CFG_FORWARD_RAW_DATA), "false"))
-			this.storeForwardRawData = false;
-		
 
-		for(int i = 1; i < Integer.MAX_VALUE; i++) {
-			String name = properties.getProperty(CFG_FIELD_PREFIX + i + ".name");
-			if(StringUtils.isBlank(name))
-				break;
-			
-			String path = properties.getProperty(CFG_FIELD_PREFIX + i + ".path");
-			String valueType = properties.getProperty(CFG_FIELD_PREFIX + i + ".type");
-			
-			this.fields.add(new JsonContentAggregatorFieldSetting(name, path.split("\\."), StringUtils.equalsIgnoreCase("STRING", valueType) ? JsonContentType.STRING : JsonContentType.NUMERICAL));
-		}
+		extracted(properties);
 		/////////////////////////////////////////////////////////////////////////////////////
 		
 		if(logger.isDebugEnabled())
 			logger.debug("json content aggregator [id="+id+"] initialized");
 		
+	}
+
+	private void extracted(Properties properties) {
+		this.pipelineId = StringUtils.trim(properties.getProperty(CFG_PIPELINE_ID));
+		this.documentType = StringUtils.trim(properties.getProperty(CFG_DOCUMENT_TYPE));
+		if(StringUtils.equalsIgnoreCase(properties.getProperty(CFG_FORWARD_RAW_DATA), "false"))
+			this.storeForwardRawData = false;
+
+
+		for(int i = 1; i < Integer.MAX_VALUE; i++) {
+			String name = properties.getProperty(CFG_FIELD_PREFIX + i + ".name");
+			if(StringUtils.isBlank(name))
+				break;
+
+			String path = properties.getProperty(CFG_FIELD_PREFIX + i + ".path");
+			String valueType = properties.getProperty(CFG_FIELD_PREFIX + i + ".type");
+
+			this.fields.add(new JsonContentAggregatorFieldSetting(name, path.split("\\."), StringUtils.equalsIgnoreCase("STRING", valueType) ? JsonContentType.STRING : JsonContentType.NUMERICAL));
+		}
 	}
 
 	/**
