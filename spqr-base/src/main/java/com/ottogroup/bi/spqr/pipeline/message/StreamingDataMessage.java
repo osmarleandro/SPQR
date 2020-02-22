@@ -28,7 +28,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 @JsonRootName ( value = "streamingDataSourceMessage" )
 public class StreamingDataMessage implements Serializable {
 
-	private static final long serialVersionUID = 1280809436656124315L;
+    public static final String CFG_WAIT_STRATEGY_NAME = "waitStrategy.name";
+    private static final long serialVersionUID = 1280809436656124315L;
 	
 	/** message body a.k.a its content */
 	@JsonProperty ( value = "body", required = true )

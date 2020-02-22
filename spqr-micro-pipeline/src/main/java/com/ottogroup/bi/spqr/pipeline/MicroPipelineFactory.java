@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 
+import com.ottogroup.bi.spqr.pipeline.message.StreamingDataMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -347,7 +348,7 @@ public class MicroPipelineFactory {
 			if(!queues.containsKey(StringUtils.lowerCase(StringUtils.trim(componentConfiguration.getFromQueue()))))
 				throw new RequiredInputMissingException("Unknown source queue '"+componentConfiguration.getFromQueue()+"'");
 
-			if(StringUtils.isBlank(componentConfiguration.getSettings().getProperty(DelayedResponseOperator.CFG_WAIT_STRATEGY_NAME)))
+			if(StringUtils.isBlank(componentConfiguration.getSettings().getProperty(StreamingDataMessage.CFG_WAIT_STRATEGY_NAME)))
 				throw new RequiredInputMissingException("Missing required settings for wait strategy applied to delayed response operator");
 
 		////////////////////////////////////////////////////////////////////////////////////
@@ -388,9 +389,9 @@ public class MicroPipelineFactory {
 			throw new RequiredInputMissingException("Missing required delayed response operator configuration");
 		if(delayedResponseOperatorCfg.getSettings() == null)
 			throw new RequiredInputMissingException("Missing required delayed response operator settings");
-		String strategyName = StringUtils.lowerCase(StringUtils.trim(delayedResponseOperatorCfg.getSettings().getProperty(DelayedResponseOperator.CFG_WAIT_STRATEGY_NAME)));
+		String strategyName = StringUtils.lowerCase(StringUtils.trim(delayedResponseOperatorCfg.getSettings().getProperty(StreamingDataMessage.CFG_WAIT_STRATEGY_NAME)));
 		if(StringUtils.isBlank(strategyName)) 
-			throw new RequiredInputMissingException("Missing required strategy name expected as part of operator settings ('"+DelayedResponseOperator.CFG_WAIT_STRATEGY_NAME+"')");
+			throw new RequiredInputMissingException("Missing required strategy name expected as part of operator settings ('"+ StreamingDataMessage.CFG_WAIT_STRATEGY_NAME+"')");
 		//
 		/////////////////////////////////////////////////////////////////////////////////////
 		

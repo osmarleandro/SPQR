@@ -22,6 +22,7 @@ import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.ottogroup.bi.spqr.pipeline.message.StreamingDataMessage;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
@@ -777,7 +778,7 @@ public class MicroPipelineFactoryTest {
 			cfg.setVersion("0.0.1");
 			cfg.setToQueue("");
 			cfg.setFromQueue("queue-2");
-			cfg.getSettings().put(DelayedResponseOperator.CFG_WAIT_STRATEGY_NAME, "test-strategy");
+			cfg.getSettings().put(StreamingDataMessage.CFG_WAIT_STRATEGY_NAME, "test-strategy");
 			new MicroPipelineFactory("id", Mockito.mock(ComponentRepository.class)).initializeComponent(cfg, Collections.<String, StreamingMessageQueue>emptyMap());
 			Assert.fail("Missing required input");
 		} catch(RequiredInputMissingException e) {
@@ -810,7 +811,7 @@ public class MicroPipelineFactoryTest {
 			cfg.setVersion("0.0.1");
 			cfg.setToQueue("unknown-queue");
 			cfg.setFromQueue("queue-1");
-			cfg.getSettings().put(DelayedResponseOperator.CFG_WAIT_STRATEGY_NAME, "test-strategy");
+			cfg.getSettings().put(StreamingDataMessage.CFG_WAIT_STRATEGY_NAME, "test-strategy");
 			new MicroPipelineFactory("id", Mockito.mock(ComponentRepository.class)).initializeComponent(cfg, queues);
 			Assert.fail("Missing required input");
 		} catch(RequiredInputMissingException e) {			
@@ -843,7 +844,7 @@ public class MicroPipelineFactoryTest {
 			cfg.setVersion("0.0.1");
 			cfg.setToQueue("queue-1");
 			cfg.setFromQueue("");
-			cfg.getSettings().put(DelayedResponseOperator.CFG_WAIT_STRATEGY_NAME, "test-strategy");
+			cfg.getSettings().put(StreamingDataMessage.CFG_WAIT_STRATEGY_NAME, "test-strategy");
 			new MicroPipelineFactory("id", Mockito.mock(ComponentRepository.class)).initializeComponent(cfg, queues);
 			Assert.fail("Missing required input");
 		} catch(RequiredInputMissingException e) {
@@ -876,7 +877,7 @@ public class MicroPipelineFactoryTest {
 			cfg.setVersion("0.0.1");
 			cfg.setToQueue("queue-1");
 			cfg.setFromQueue("unknown-queue");
-			cfg.getSettings().put(DelayedResponseOperator.CFG_WAIT_STRATEGY_NAME, "test-strategy");
+			cfg.getSettings().put(StreamingDataMessage.CFG_WAIT_STRATEGY_NAME, "test-strategy");
 			new MicroPipelineFactory("id", Mockito.mock(ComponentRepository.class)).initializeComponent(cfg, queues);
 			Assert.fail("Missing required input");
 		} catch(RequiredInputMissingException e) {
@@ -1027,7 +1028,7 @@ public class MicroPipelineFactoryTest {
 	@Test
 	public void testGetResponseWaitStrategy_withInvalidStrategyName() throws RequiredInputMissingException {
 		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
-		cfg.getSettings().put(DelayedResponseOperator.CFG_WAIT_STRATEGY_NAME, "test-strategy");
+		cfg.getSettings().put(StreamingDataMessage.CFG_WAIT_STRATEGY_NAME, "test-strategy");
 		try {
 			new MicroPipelineFactory("id", Mockito.mock(ComponentRepository.class)).getResponseWaitStrategy(cfg);
 			Assert.fail("Unknown wait strategy");
@@ -1043,7 +1044,7 @@ public class MicroPipelineFactoryTest {
 	@Test
 	public void testGetResponseWaitStrategy_withValidStrategyAndSettings() throws RequiredInputMissingException, UnknownWaitStrategyException {
 		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
-		cfg.getSettings().put(DelayedResponseOperator.CFG_WAIT_STRATEGY_NAME, MessageCountResponseWaitStrategy.WAIT_STRATEGY_NAME);
+		cfg.getSettings().put(StreamingDataMessage.CFG_WAIT_STRATEGY_NAME, MessageCountResponseWaitStrategy.WAIT_STRATEGY_NAME);
 		cfg.getSettings().put(DelayedResponseOperator.CFG_WAIT_STRATEGY_SETTINGS_PREFIX + "key-2", "value-2");
 		cfg.getSettings().put(DelayedResponseOperator.CFG_WAIT_STRATEGY_SETTINGS_PREFIX + "key-1", "value-1");
 		DelayedResponseOperatorWaitStrategy strategy = new MicroPipelineFactory("id", Mockito.mock(ComponentRepository.class)).getResponseWaitStrategy(cfg);
