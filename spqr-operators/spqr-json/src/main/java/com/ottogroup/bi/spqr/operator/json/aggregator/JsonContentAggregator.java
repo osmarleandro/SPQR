@@ -90,15 +90,6 @@ public class JsonContentAggregator implements DelayedResponseOperator {
 		if(StringUtils.isBlank(this.id))
 			throw new RequiredInputMissingException("Missing required component identifier");
 
-		extracted(properties);
-		/////////////////////////////////////////////////////////////////////////////////////
-		
-		if(logger.isDebugEnabled())
-			logger.debug("json content aggregator [id="+id+"] initialized");
-		
-	}
-
-	private void extracted(Properties properties) {
 		this.pipelineId = StringUtils.trim(properties.getProperty(CFG_PIPELINE_ID));
 		this.documentType = StringUtils.trim(properties.getProperty(CFG_DOCUMENT_TYPE));
 		if(StringUtils.equalsIgnoreCase(properties.getProperty(CFG_FORWARD_RAW_DATA), "false"))
@@ -115,6 +106,11 @@ public class JsonContentAggregator implements DelayedResponseOperator {
 
 			this.fields.add(new JsonContentAggregatorFieldSetting(name, path.split("\\."), StringUtils.equalsIgnoreCase("STRING", valueType) ? JsonContentType.STRING : JsonContentType.NUMERICAL));
 		}
+		/////////////////////////////////////////////////////////////////////////////////////
+		
+		if(logger.isDebugEnabled())
+			logger.debug("json content aggregator [id="+id+"] initialized");
+		
 	}
 
 	/**
