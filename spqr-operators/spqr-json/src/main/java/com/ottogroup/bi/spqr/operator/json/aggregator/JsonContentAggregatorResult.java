@@ -232,5 +232,8 @@ public class JsonContentAggregatorResult implements Serializable {
 	public void setRawData(List<Map<String, Object>> rawData) {
 		this.rawData = rawData;
 	}
-	
+
+    public void newMethodToMove(String param) {
+        System.out.println(param);
+    }
 }
