@@ -203,7 +203,7 @@ public class EsperOperatorTest {
 		operator.onMessage(new StreamingDataMessage("{\"key\":\"value\"}".getBytes(), System.currentTimeMillis()));
 
 		Mockito.verify(strategy).release();
-		String content = new String(operator.getResult()[0].getBody());
+		String content = new String(operator.getResultRenamed()[0].getBody());
 		Assert.assertEquals("Values must be equal", "{\"key\":\"value\"}", content);
 	}	
 	

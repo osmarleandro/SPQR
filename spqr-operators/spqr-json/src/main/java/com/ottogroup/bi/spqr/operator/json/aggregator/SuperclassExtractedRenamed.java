@@ -2,10 +2,10 @@ package com.ottogroup.bi.spqr.operator.json.aggregator;
 
 import com.ottogroup.bi.spqr.pipeline.component.operator.DelayedResponseOperator;
 
-public class SuperclassExtracted {
+public class SuperclassExtractedRenamed {
 	
 	
-	public SuperclassExtracted() {
+	public SuperclassExtractedRenamed() {
 		super();
 	}
 
