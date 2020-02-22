@@ -274,4 +274,22 @@ public class JsonContentAggregator extends SuperclassExtracted implements Delaye
 		if(storeForwardRawData)
 			this.resultDocument.addRawData(rawData);
 	}
+
+	/**
+	 * Walks along the path provided and reads out the leaf value which is returned as string
+	 * @param jsonNode
+	 * @param fieldPath
+	 * @return
+	 */
+	protected String getTextFieldValue(final JsonNode jsonNode, final String[] fieldPath) {
+
+		int fieldAccessStep = 0;
+		JsonNode contentNode = jsonNode;
+		while(fieldAccessStep < fieldPath.length) {
+			contentNode = contentNode.get(fieldPath[fieldAccessStep]);
+			fieldAccessStep++;
+		}
+
+		return contentNode.textValue();
+	}
 }
