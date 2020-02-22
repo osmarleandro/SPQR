@@ -43,7 +43,7 @@ import com.ottogroup.bi.spqr.pipeline.message.StreamingDataMessage;
  * @since Mar 17, 2015
  */
 @SPQRComponent(type=MicroPipelineComponentType.DELAYED_RESPONSE_OPERATOR, name="jsonContentAggregator", version="0.0.1", description="Aggregates arbitrary JSON content")
-public class JsonContentAggregator implements DelayedResponseOperator {
+public class JsonContentAggregator extends SuperclassExtracted implements DelayedResponseOperator {
 
 	/** our faithful logging facility .... ;-) */
 	private static final Logger logger = Logger.getLogger(JsonContentAggregator.class);
@@ -61,8 +61,6 @@ public class JsonContentAggregator implements DelayedResponseOperator {
 	//
 	////////////////////////////////////////////////////////////////////////
 
-	/** component identifier assigned by caller */
-	private String id = null;
 	/** maps inbound strings into object representations and json strings vice versa */
 	private final ObjectMapper jsonMapper = new ObjectMapper();
 	/** identifier as assigned to surrounding pipeline */
