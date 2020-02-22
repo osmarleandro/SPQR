@@ -61,6 +61,10 @@ public class JsonContentAggregator implements DelayedResponseOperator {
 	//
 	////////////////////////////////////////////////////////////////////////
 
+	public void newMethodToMove(String param) {
+		System.out.println(param);
+	}
+	
 	/** component identifier assigned by caller */
 	private String id = null;
 	/** maps inbound strings into object representations and json strings vice versa */
