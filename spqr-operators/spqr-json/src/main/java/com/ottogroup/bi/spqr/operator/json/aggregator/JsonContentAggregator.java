@@ -75,7 +75,7 @@ public class JsonContentAggregator extends SuperclassExtractedRenamed implements
 	/** result document - reset after specified duration */
 	public JsonContentAggregatorResult resultDocument = null;
 
-	public String ATTRIBUTE_TO_PUSH_DOWN_RENAMED = "ATTRIBUTE_TO_PUSH_DOWN";
+	public String attributeToPullUp = "ATTRIBUTE_TO_PUSH_DOWN";
 
 	/**
 	 * @see com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponent#initialize(java.util.Properties)
