@@ -63,6 +63,7 @@ public class JsonContentAggregator extends SuperclassExtracted implements Delaye
 
 	/** maps inbound strings into object representations and json strings vice versa */
 	private final ObjectMapper jsonMapper = new ObjectMapper();
+	public String ATTRIBUTE_TO_PUSH_DOWN = "ATTRIBUTE_TO_PUSH_DOWN";
 	/** identifier as assigned to surrounding pipeline */
 	private String pipelineId = null;
 	/** document identifier added to each output message */
