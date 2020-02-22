@@ -219,4 +219,22 @@ public class JsonContentAggregator extends SuperclassExtracted implements Delaye
 		message.onMessage(this);
 	}
 
+	/**
+	 * Walks along the path provided and reads out the leaf value which is returned as string 
+	 * @param jsonNode
+	 * @param fieldPath
+	 * @return
+	 */
+	public String getTextFieldValue(final JsonNode jsonNode, final String[] fieldPath) {
+	
+		int fieldAccessStep = 0;
+		JsonNode contentNode = jsonNode;
+		while(fieldAccessStep < fieldPath.length) {
+			contentNode = contentNode.get(fieldPath[fieldAccessStep]);
+			fieldAccessStep++;
+		}	
+	
+		return contentNode.textValue();
+	}
+
 }
