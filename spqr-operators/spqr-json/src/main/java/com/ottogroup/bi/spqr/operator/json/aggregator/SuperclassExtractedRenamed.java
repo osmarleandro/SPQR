@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SuperclassExtracted {
+public class SuperclassExtractedRenamed {
 
     /** component identifier assigned by caller */
     protected String id = null;

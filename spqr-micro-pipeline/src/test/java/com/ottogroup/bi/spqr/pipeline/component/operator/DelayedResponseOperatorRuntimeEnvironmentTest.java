@@ -170,7 +170,7 @@ public class DelayedResponseOperatorRuntimeEnvironmentTest {
 		StreamingDataMessage response = new StreamingDataMessage("response-test-message".getBytes(), System.currentTimeMillis());
 		Mockito.when(queueConsumer.getWaitStrategy()).thenReturn(queueConsumerWaitStrategy);
 		Mockito.when(queueConsumerWaitStrategy.waitFor(queueConsumer)).thenReturn(message);
-		Mockito.when(delayedResponseOperator.getResult()).thenReturn(new StreamingDataMessage[]{response});
+		Mockito.when(delayedResponseOperator.getResultRenamed()).thenReturn(new StreamingDataMessage[]{response});
 		Mockito.when(delayedResponseOperator.getId()).thenReturn("test-id");
 		Mockito.when(queueProducer.getWaitStrategy()).thenReturn(queueProducerWaitStrategy);
 		
@@ -184,7 +184,7 @@ public class DelayedResponseOperatorRuntimeEnvironmentTest {
 		Mockito.verify(queueConsumerWaitStrategy, Mockito.timeout(500).atLeastOnce()).waitFor(queueConsumer);
 		Mockito.verify(delayedResponseOperator, Mockito.timeout(500).atLeast(1)).onMessage(message);
 		Mockito.verify(responseWaitStrategy, Mockito.timeout(500).atLeast(1)).onMessage(message);
-		Mockito.verify(delayedResponseOperator, Mockito.timeout(500)).getResult();
+		Mockito.verify(delayedResponseOperator, Mockito.timeout(500)).getResultRenamed();
 		Mockito.verify(queueProducerWaitStrategy, Mockito.timeout(500)).forceLockRelease();
 		Mockito.verify(queueProducer, Mockito.timeout(500)).insert(response);
 		Mockito.verify(statsQueueProducer, Mockito.timeout(500).atLeastOnce()).insert(Mockito.any(StreamingDataMessage.class));

@@ -16,8 +16,6 @@
 package com.ottogroup.bi.spqr.operator.esper;
 
 import java.util.Properties;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,7 +23,6 @@ import org.mockito.Mockito;
 
 import com.ottogroup.bi.spqr.exception.ComponentInitializationFailedException;
 import com.ottogroup.bi.spqr.exception.RequiredInputMissingException;
-import com.ottogroup.bi.spqr.pipeline.component.operator.DelayedResponseCollector;
 import com.ottogroup.bi.spqr.pipeline.component.operator.DelayedResponseOperatorWaitStrategy;
 import com.ottogroup.bi.spqr.pipeline.message.StreamingDataMessage;
 
@@ -203,7 +200,7 @@ public class EsperOperatorTest {
 		operator.onMessage(new StreamingDataMessage("{\"key\":\"value\"}".getBytes(), System.currentTimeMillis()));
 
 		Mockito.verify(strategy).release();
-		String content = new String(operator.getResult()[0].getBody());
+		String content = new String(operator.getResultRenamed()[0].getBody());
 		Assert.assertEquals("Values must be equal", "{\"key\":\"value\"}", content);
 	}	
 	

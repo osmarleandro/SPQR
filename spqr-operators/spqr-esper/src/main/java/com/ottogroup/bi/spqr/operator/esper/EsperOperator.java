@@ -199,9 +199,9 @@ public class EsperOperator implements DelayedResponseOperator {
 	}
 
 	/**
-	 * @see com.ottogroup.bi.spqr.pipeline.component.operator.DelayedResponseOperator#getResult()
+	 * @see com.ottogroup.bi.spqr.pipeline.component.operator.DelayedResponseOperator#getResultRenamed()
 	 */
-	public StreamingDataMessage[] getResult() {
+	public StreamingDataMessage[] getResultRenamed() {
 		this.numOfMessagesSinceLastResult = 0;
 		return result;
 	}

@@ -43,7 +43,7 @@ import com.ottogroup.bi.spqr.pipeline.message.StreamingDataMessage;
  * @since Mar 17, 2015
  */
 @SPQRComponent(type=MicroPipelineComponentType.DELAYED_RESPONSE_OPERATOR, name="jsonContentAggregator", version="0.0.1", description="Aggregates arbitrary JSON content")
-public class JsonContentAggregator extends SuperclassExtracted implements DelayedResponseOperator {
+public class JsonContentAggregator extends SuperclassExtractedRenamed implements DelayedResponseOperator {
 
 	/** our faithful logging facility .... ;-) */
 	private static final Logger logger = Logger.getLogger(JsonContentAggregator.class);
@@ -63,7 +63,7 @@ public class JsonContentAggregator extends SuperclassExtracted implements Delaye
 
 	/** maps inbound strings into object representations and json strings vice versa */
 	private final ObjectMapper jsonMapper = new ObjectMapper();
-	public String ATTRIBUTE_TO_PUSH_DOWN = "ATTRIBUTE_TO_PUSH_DOWN";
+	public String ATTRIBUTE_TO_PUSH_DOWN_RENAMED = "ATTRIBUTE_TO_PUSH_DOWN";
 	/** identifier as assigned to surrounding pipeline */
 	private String pipelineId = null;
 	/** document identifier added to each output message */
@@ -113,9 +113,9 @@ public class JsonContentAggregator extends SuperclassExtracted implements Delaye
 	}
 
 	/**
-	 * @see com.ottogroup.bi.spqr.pipeline.component.operator.DelayedResponseOperator#getResult()
+	 * @see com.ottogroup.bi.spqr.pipeline.component.operator.DelayedResponseOperator#getResultRenamed()
 	 */
-	public StreamingDataMessage[] getResult() {
+	public StreamingDataMessage[] getResultRenamed() {
 		this.messagesSinceLastResult = 0;
 		
 		StreamingDataMessage message = null;

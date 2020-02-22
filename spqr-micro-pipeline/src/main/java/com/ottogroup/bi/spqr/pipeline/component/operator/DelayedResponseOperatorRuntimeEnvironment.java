@@ -35,7 +35,7 @@ import com.ottogroup.bi.spqr.pipeline.statistics.ComponentStatsTriggerTask;
  * Provides a runtime environment for {@link DelayedResponseOperator} instances. The environment polls
  * messages from the assigned {@link StreamingMessageQueueConsumer} and forwards them for further processing
  * to the {@link DirectResponseOperator}. In case the condition evaluated by the {@link DelayedResponseOperatorWaitStrategy}
- * provided on startup holds, the environment asks the operator to return its {@link DelayedResponseOperator#getResult() results}
+ * provided on startup holds, the environment asks the operator to return its {@link DelayedResponseOperator#getResultRenamed() results}
  * which are forwarded to the {@link StreamingMessageQueueProducer} (order is preserved as received from operator).
  * @author mnxfst
  * @since Mar 11, 2015
@@ -209,7 +209,7 @@ public class DelayedResponseOperatorRuntimeEnvironment implements Runnable, Dela
 	public void retrieveMessages() {		
 		try {		
 			// try to fetch messages from underlying operator
-			StreamingDataMessage[] retrievedMessages = this.delayedResponseOperator.getResult();
+			StreamingDataMessage[] retrievedMessages = this.delayedResponseOperator.getResultRenamed();
 
 			// forward messages to assigned queue if any messages are available 
 			if(retrievedMessages != null) {
