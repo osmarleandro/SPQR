@@ -20,7 +20,6 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentConfiguration;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentType;
 import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueueConfiguration;
 
@@ -86,7 +85,7 @@ public class MicroPipelineValidator implements ExtractedInterface {
 		///////////////////////////////////////////////////////////////////////////////////
 		// validate components
 		Set<String> componentIdentifiers = new HashSet<>();
-		for(final MicroPipelineComponentConfiguration componentCfg : configuration.getComponents()) {
+		for(final MicroPipelineComponentConfigurationRenamed componentCfg : configuration.getComponents()) {
 
 			MicroPipelineValidationResult componentValidationResult = validateComponent(componentCfg, queueIdentifiers, componentIdentifiers);
 			if(componentValidationResult != MicroPipelineValidationResult.OK)
@@ -129,13 +128,13 @@ public class MicroPipelineValidator implements ExtractedInterface {
 	}
 	
 	/**
-	 * Validates a single {@link MicroPipelineComponentConfiguration} 
+	 * Validates a single {@link MicroPipelineComponentConfigurationRenamed}
 	 * @param componentCfg
 	 * @param queueIdentifiers previously extracted queue identifiers
 	 * @param componentIdentifiers previously extracted component identifiers
 	 * @return
 	 */
-	protected MicroPipelineValidationResult validateComponent(final MicroPipelineComponentConfiguration componentCfg, final Set<String> queueIdentifiers, final Set<String> componentIdentifiers) {
+	protected MicroPipelineValidationResult validateComponent(final MicroPipelineComponentConfigurationRenamed componentCfg, final Set<String> queueIdentifiers, final Set<String> componentIdentifiers) {
 		
 		///////////////////////////////////////////////////////////////////////////////////
 		// component and its id, name, version and type for neither being null empty

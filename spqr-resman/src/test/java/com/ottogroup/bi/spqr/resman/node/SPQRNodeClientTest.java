@@ -33,7 +33,7 @@ import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineShutdownRespons
 import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineShutdownResponse.MicroPipelineShutdownState;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineValidationResult;
-import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentConfiguration;
+import com.ottogroup.bi.spqr.pipeline.MicroPipelineComponentConfigurationRenamed;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentType;
 import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueueConfiguration;
 
@@ -150,7 +150,7 @@ public class SPQRNodeClientTest {
 		MicroPipelineConfiguration sampleConfiguration = new MicroPipelineConfiguration();
 		sampleConfiguration.setId("Test");
 		
-		MicroPipelineComponentConfiguration componentCfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed componentCfg = new MicroPipelineComponentConfigurationRenamed();
 		componentCfg.setId("test-component");
 		componentCfg.setName("test");
 		componentCfg.setSettings(null);
@@ -202,7 +202,7 @@ public class SPQRNodeClientTest {
 		MicroPipelineConfiguration sampleConfiguration = new MicroPipelineConfiguration();
 		sampleConfiguration.setId("Test");
 		
-		MicroPipelineComponentConfiguration componentCfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed componentCfg = new MicroPipelineComponentConfigurationRenamed();
 		componentCfg.setId("test-component");
 		componentCfg.setName("test");
 		componentCfg.setSettings(null);

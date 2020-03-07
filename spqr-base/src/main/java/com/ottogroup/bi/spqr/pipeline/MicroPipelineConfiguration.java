@@ -21,7 +21,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentConfiguration;
 import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueueConfiguration;
 
 /**
@@ -42,7 +41,7 @@ public class MicroPipelineConfiguration implements Serializable {
 	private List<StreamingMessageQueueConfiguration> queues = new ArrayList<>();
 	/** component configurations */
 	@JsonProperty(value="components", required=true)
-	private List<MicroPipelineComponentConfiguration> components = new ArrayList<>();
+	private List<MicroPipelineComponentConfigurationRenamed> components = new ArrayList<>();
 	/** timer for collecting components stats */
 	@JsonProperty(value="statsCollectionTimer", required=true)
 	private long statsCollectionTimer = 1000;
@@ -65,10 +64,10 @@ public class MicroPipelineConfiguration implements Serializable {
 	public void setQueues(List<StreamingMessageQueueConfiguration> queues) {
 		this.queues = queues;
 	}
-	public List<MicroPipelineComponentConfiguration> getComponents() {
+	public List<MicroPipelineComponentConfigurationRenamed> getComponents() {
 		return components;
 	}
-	public void setComponents(List<MicroPipelineComponentConfiguration> components) {
+	public void setComponents(List<MicroPipelineComponentConfigurationRenamed> components) {
 		this.components = components;
 	}
 	

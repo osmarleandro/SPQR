@@ -29,7 +29,6 @@ import com.ottogroup.bi.spqr.exception.ComponentInitializationFailedException;
 import com.ottogroup.bi.spqr.exception.QueueInitializationFailedException;
 import com.ottogroup.bi.spqr.exception.RequiredInputMissingException;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponent;
-import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentConfiguration;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentType;
 import com.ottogroup.bi.spqr.pipeline.component.emitter.Emitter;
 import com.ottogroup.bi.spqr.pipeline.component.emitter.EmitterRuntimeEnvironment;
@@ -77,7 +76,7 @@ public class MicroPipelineFactory {
 	
 	
 	/**
-	 * Instantiates the {@link MicroPipeline} according to the provided {@link MicroPipelineComponentConfiguration} 
+	 * Instantiates the {@link MicroPipeline} according to the provided {@link MicroPipelineComponentConfigurationRenamed}
 	 * @param cfg
 	 * @param executorService
 	 * @return
@@ -156,7 +155,7 @@ public class MicroPipelineFactory {
 		final Map<String, MicroPipelineComponent> components = new HashMap<>();
 		boolean sourceComponentFound = false;
 		boolean emitterComponentFound = false;
-		for(final MicroPipelineComponentConfiguration componentCfg : cfg.getComponents()) {
+		for(final MicroPipelineComponentConfigurationRenamed componentCfg : cfg.getComponents()) {
 			String id = StringUtils.lowerCase(StringUtils.trim(componentCfg.getId()));
 			
 			// a component for that identifier already exists: kill the pipeline and tell the caller about it
@@ -292,7 +291,7 @@ public class MicroPipelineFactory {
 	 * TODO test queue references in toQueues and fromQueues
 	 * TODO test component instantiation
 	 */
-	protected MicroPipelineComponent initializeComponent(final MicroPipelineComponentConfiguration componentConfiguration, final Map<String, StreamingMessageQueue> queues) throws RequiredInputMissingException, ComponentInitializationFailedException {
+	protected MicroPipelineComponent initializeComponent(final MicroPipelineComponentConfigurationRenamed componentConfiguration, final Map<String, StreamingMessageQueue> queues) throws RequiredInputMissingException, ComponentInitializationFailedException {
 	
 		///////////////////////////////////////////////////////////////////////////////////
 		// validate input
@@ -377,11 +376,11 @@ public class MicroPipelineFactory {
 
 	/**
 	 * Instantiates, initializes and returns the {@link DelayedResponseOperatorWaitStrategy} configured for the {@link DelayedResponseOperator}
-	 * whose {@link MicroPipelineComponentConfiguration configuration} is provided when calling this method. 
+	 * whose {@link MicroPipelineComponentConfigurationRenamed configuration} is provided when calling this method.
 	 * @param delayedResponseOperatorCfg
 	 * @return
 	 */
-	protected DelayedResponseOperatorWaitStrategy getResponseWaitStrategy(final MicroPipelineComponentConfiguration delayedResponseOperatorCfg) throws RequiredInputMissingException, UnknownWaitStrategyException {
+	protected DelayedResponseOperatorWaitStrategy getResponseWaitStrategy(final MicroPipelineComponentConfigurationRenamed delayedResponseOperatorCfg) throws RequiredInputMissingException, UnknownWaitStrategyException {
 
 		/////////////////////////////////////////////////////////////////////////////////////
 		// validate input

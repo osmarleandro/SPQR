@@ -27,7 +27,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentConfiguration;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentType;
 import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueueConfiguration;
 
@@ -71,7 +70,7 @@ public class MicroPipelineValidatorTest {
 	@Test
 	public void testValidate_withEmptyQueuesList() {
 		@SuppressWarnings("unchecked")
-		List<MicroPipelineComponentConfiguration> mockComponentCfg = Mockito.mock(ArrayList.class);
+		List<MicroPipelineComponentConfigurationRenamed> mockComponentCfg = Mockito.mock(ArrayList.class);
 		Mockito.when(mockComponentCfg.isEmpty()).thenReturn(false);
 		
 		MicroPipelineConfiguration mockCfg = Mockito.mock(MicroPipelineConfiguration.class);
@@ -95,8 +94,8 @@ public class MicroPipelineValidatorTest {
 		queues.add(new StreamingMessageQueueConfiguration("src-to-operator"));
 		queues.add(new StreamingMessageQueueConfiguration("operator-to-emitter"));
 		
-		List<MicroPipelineComponentConfiguration> components = new ArrayList<MicroPipelineComponentConfiguration>();
-		MicroPipelineComponentConfiguration srcCfg = new MicroPipelineComponentConfiguration();
+		List<MicroPipelineComponentConfigurationRenamed> components = new ArrayList<MicroPipelineComponentConfigurationRenamed>();
+		MicroPipelineComponentConfigurationRenamed srcCfg = new MicroPipelineComponentConfigurationRenamed();
 		srcCfg.setFromQueue("");
 		srcCfg.setId("test-source-id");
 		srcCfg.setName("test-source-name");
@@ -106,7 +105,7 @@ public class MicroPipelineValidatorTest {
 		srcCfg.setVersion("test-source-version");
 		components.add(srcCfg);
 
-		MicroPipelineComponentConfiguration operatorCfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed operatorCfg = new MicroPipelineComponentConfigurationRenamed();
 		operatorCfg.setFromQueue("src-to-operator");
 		operatorCfg.setId("test-operator-id");
 		operatorCfg.setName("test-operator-name");
@@ -116,7 +115,7 @@ public class MicroPipelineValidatorTest {
 		operatorCfg.setVersion("test-operator-version");
 		components.add(operatorCfg);
 
-		MicroPipelineComponentConfiguration emitterCfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed emitterCfg = new MicroPipelineComponentConfigurationRenamed();
 		emitterCfg.setFromQueue("operator-to-emitter");
 		emitterCfg.setId("test-emitter-id");
 		emitterCfg.setName("test-emitter-name");
@@ -176,7 +175,7 @@ public class MicroPipelineValidatorTest {
 	// test cases for validateComponent
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided null input 
 	 */
 	@Test
@@ -186,7 +185,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration missing the identifier 
 	 */
 	@Test
@@ -196,7 +195,7 @@ public class MicroPipelineValidatorTest {
 		queues.add("test-input");
 		queues.add("test-output");
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("test-input");
 		cfg.setId("");
 		cfg.setName("test-name");
@@ -210,7 +209,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration missing the name 
 	 */
 	@Test
@@ -220,7 +219,7 @@ public class MicroPipelineValidatorTest {
 		queues.add("test-input");
 		queues.add("test-output");
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("test-input");
 		cfg.setId("test-id");
 		cfg.setName("");
@@ -234,7 +233,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration missing the version 
 	 */
 	@Test
@@ -244,7 +243,7 @@ public class MicroPipelineValidatorTest {
 		queues.add("test-input");
 		queues.add("test-output");
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("test-input");
 		cfg.setId("test-id");
 		cfg.setName("test-name");
@@ -258,7 +257,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration missing the type
 	 */
 	@Test
@@ -268,7 +267,7 @@ public class MicroPipelineValidatorTest {
 		queues.add("test-input");
 		queues.add("test-output");
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("test-input");
 		cfg.setId("test-id");
 		cfg.setName("test-name");
@@ -282,7 +281,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration with non-unique id
 	 */
 	@Test
@@ -295,7 +294,7 @@ public class MicroPipelineValidatorTest {
 		Set<String> components = new HashSet<String>();
 		components.add("test-component");
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("test-input");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -309,7 +308,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing a source which has a source queue reference
 	 */
 	@Test
@@ -321,7 +320,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("test-input");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -335,7 +334,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing a source missing the destination queue
 	 */
 	@Test
@@ -347,7 +346,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -361,7 +360,7 @@ public class MicroPipelineValidatorTest {
 	}
 
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing a source referencing an unknnown destination queue
 	 */
 	@Test
@@ -373,7 +372,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -387,7 +386,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing a valid source 
 	 */
 	@Test
@@ -399,7 +398,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -413,7 +412,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing an operator missing the source queue reference 
 	 */
 	@Test
@@ -425,7 +424,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -439,7 +438,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing an operator missing the destination queue reference 
 	 */
 	@Test
@@ -451,7 +450,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("test-input");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -465,7 +464,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing an operator referencing an unknown source queue 
 	 */
 	@Test
@@ -477,7 +476,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("unknown-input");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -491,7 +490,7 @@ public class MicroPipelineValidatorTest {
 	}
 
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing an operator referencing an unknown destination queue 
 	 */
 	@Test
@@ -503,7 +502,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("test-input");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -517,7 +516,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing a valid operator 
 	 */
 	@Test
@@ -529,7 +528,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("test-input");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -543,7 +542,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing an emitter referencing a destination queue 
 	 */
 	@Test
@@ -555,7 +554,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("test-input");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -569,7 +568,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing an emitter missing the source queue ref 
 	 */
 	@Test
@@ -581,7 +580,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -595,7 +594,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing an emitter referencing an unknown source queue 
 	 */
 	@Test
@@ -607,7 +606,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("unknown-input");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
@@ -621,7 +620,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfiguration, java.util.Set, java.util.Set)} being
+	 * Test case for {@link MicroPipelineValidator#validateComponent(MicroPipelineComponentConfigurationRenamed, java.util.Set, java.util.Set)} being
 	 * provided a configuration showing a valid emitter 
 	 */
 	@Test
@@ -633,7 +632,7 @@ public class MicroPipelineValidatorTest {
 		
 		Set<String> components = new HashSet<String>();
 		
-		MicroPipelineComponentConfiguration cfg = new MicroPipelineComponentConfiguration();
+		MicroPipelineComponentConfigurationRenamed cfg = new MicroPipelineComponentConfigurationRenamed();
 		cfg.setFromQueue("test-input");
 		cfg.setId("test-component");
 		cfg.setName("test-name");
