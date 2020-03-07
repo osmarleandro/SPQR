@@ -30,6 +30,7 @@ import com.ottogroup.bi.spqr.exception.RequiredInputMissingException;
 import com.ottogroup.bi.spqr.node.resource.MicroPipelineInstantiationResponse;
 import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineShutdownResponse;
 import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineShutdownResponse.MicroPipelineShutdownState;
+import com.ottogroup.bi.spqr.pipeline.ExtractedInterface;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineValidationResult;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineValidator;
@@ -54,7 +55,7 @@ public class SPQRNodeClient {
 	/** base url for accessing admin api */
 	private final String processingNodeAdminBaseUrl;
 	/** pipeline configuration validator */
-	private final MicroPipelineValidator pipelineConfigurationValidator = new MicroPipelineValidator();
+	private final ExtractedInterface pipelineConfigurationValidator = new MicroPipelineValidator();
 
 	/**
 	 * Initializes the node client using the provided input

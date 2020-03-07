@@ -41,7 +41,7 @@ import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueueConfiguration;
  * @author mnxfst
  * @since Apr 13, 2015
  */
-public class MicroPipelineValidator {
+public class MicroPipelineValidator implements ExtractedInterface {
 
 	
 	/**
@@ -50,6 +50,7 @@ public class MicroPipelineValidator {
 	 * @param configuration
 	 * @return
 	 */
+	@Override
 	public MicroPipelineValidationResult validate(final MicroPipelineConfiguration configuration) {
 
 		///////////////////////////////////////////////////////////////////////////////////
