@@ -22,6 +22,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
+import com.ottogroup.bi.spqr.pipeline.ExtractedInterface;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -54,7 +55,7 @@ public class SPQRNodeClient {
 	/** base url for accessing admin api */
 	private final String processingNodeAdminBaseUrl;
 	/** pipeline configuration validator */
-	private final MicroPipelineValidator pipelineConfigurationValidator = new MicroPipelineValidator();
+	private final ExtractedInterface pipelineConfigurationValidator = new MicroPipelineValidator();
 
 	/**
 	 * Initializes the node client using the provided input
