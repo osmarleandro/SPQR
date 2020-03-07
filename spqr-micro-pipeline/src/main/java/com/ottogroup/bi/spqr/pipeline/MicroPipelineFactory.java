@@ -30,6 +30,7 @@ import com.ottogroup.bi.spqr.exception.RequiredInputMissingException;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponent;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentConfiguration;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentType;
+import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed;
 import com.ottogroup.bi.spqr.pipeline.component.emitter.Emitter;
 import com.ottogroup.bi.spqr.pipeline.component.emitter.EmitterRuntimeEnvironment;
 import com.ottogroup.bi.spqr.pipeline.component.operator.DelayedResponseOperator;
@@ -84,7 +85,7 @@ public class MicroPipelineFactory {
 	 * @throws RequiredInputMissingException
 	 * TODO validate micro pipeline for path from source to emitter
 	 */
-	public MicroPipeline instantiatePipeline(final MicroPipelineConfiguration cfg, final ExecutorService executorService) throws RequiredInputMissingException, QueueInitializationFailedException, ComponentInitializationFailedException {
+	public MicroPipeline instantiatePipeline(final MicroPipelineConfigurationRenamed cfg, final ExecutorService executorService) throws RequiredInputMissingException, QueueInitializationFailedException, ComponentInitializationFailedException {
 		
 		///////////////////////////////////////////////////////////////////////////////////
 		// validate input

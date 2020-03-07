@@ -33,14 +33,14 @@ import com.ottogroup.bi.spqr.exception.RequiredInputMissingException;
 import com.ottogroup.bi.spqr.node.resource.MicroPipelineInstantiationResponse;
 import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineShutdownResponse.MicroPipelineShutdownState;
 import com.ottogroup.bi.spqr.pipeline.MicroPipeline;
-import com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineManager;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineValidationResult;
+import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed;
 
 /**
  * REST resource providing access to {@link MicroPipeline pipelines} managed by {@link MicroPipelineManager}. The resource provides methods for
  * <ul>
- *   <li>{@link MicroPipelineResource#instantiatePipeline(String, MicroPipelineConfiguration) pipeline instantiation}</li>
+ *   <li>{@link MicroPipelineResource#instantiatePipeline(String, MicroPipelineConfigurationRenamed) pipeline instantiation}</li>
  *   <li>{@link MicroPipelineResource#shutdown(String) pipeline shutdown}</li>
  * </ul>
  * @author mnxfst
@@ -67,7 +67,7 @@ public class MicroPipelineResource {
 	}
 	
 	/**
-	 * Creates a new pipeline for the given identifier and {@link MicroPipelineConfiguration}
+	 * Creates a new pipeline for the given identifier and {@link MicroPipelineConfigurationRenamed}
 	 * @param pipelineId
 	 * @param configuration
 	 * @return
@@ -75,7 +75,7 @@ public class MicroPipelineResource {
 	@Produces(value = "application/json")
 	@Timed(name = "pipeline-instantiation")
 	@POST
-	public MicroPipelineInstantiationResponse instantiatePipeline(final MicroPipelineConfiguration configuration) {		
+	public MicroPipelineInstantiationResponse instantiatePipeline(final MicroPipelineConfigurationRenamed configuration) {		
 
 		if(configuration == null)
 			return new MicroPipelineInstantiationResponse("", MicroPipelineValidationResult.MISSING_CONFIGURATION, ERROR_MSG_PIPELINE_CONFIGURATION_MISSING);
@@ -102,7 +102,7 @@ public class MicroPipelineResource {
 	}
 	
 	/**
-	 * Creates or updates a pipeline for the given identifier and {@link MicroPipelineConfiguration}
+	 * Creates or updates a pipeline for the given identifier and {@link MicroPipelineConfigurationRenamed}
 	 * @param pipelineId
 	 * @param configuration
 	 * @return
@@ -111,7 +111,7 @@ public class MicroPipelineResource {
 	@Timed(name = "pipeline-instantiation")
 	@PUT
 	@Path("{pipelineId}")
-	public MicroPipelineInstantiationResponse updatePipeline(@PathParam("pipelineId") final String pipelineId, final MicroPipelineConfiguration configuration) {
+	public MicroPipelineInstantiationResponse updatePipeline(@PathParam("pipelineId") final String pipelineId, final MicroPipelineConfigurationRenamed configuration) {
 		
 		if(StringUtils.isBlank(pipelineId))
 			return new MicroPipelineInstantiationResponse(pipelineId, MicroPipelineValidationResult.MISSING_CONFIGURATION, ERROR_MSG_PIPELINE_ID_MISSING);

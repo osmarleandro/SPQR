@@ -29,6 +29,7 @@ import com.ottogroup.bi.spqr.exception.PipelineInstantiationFailedException;
 import com.ottogroup.bi.spqr.exception.QueueInitializationFailedException;
 import com.ottogroup.bi.spqr.exception.RequiredInputMissingException;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponent;
+import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed;
 import com.ottogroup.bi.spqr.repository.ComponentRepository;
 
 /**
@@ -106,14 +107,14 @@ public class MicroPipelineManager {
 	}
 	
 	/**
-	 * Instantiates and executes the {@link MicroPipeline} described by the given {@link MicroPipelineConfiguration}
+	 * Instantiates and executes the {@link MicroPipeline} described by the given {@link MicroPipelineConfigurationRenamed}
 	 * @param configuration
 	 * @throws RequiredInputMissingException
 	 * @throws QueueInitializationFailedException
 	 * @throws ComponentInitializationFailedException
 	 * @throws PipelineInstantiationFailedException
 	 */
-	public String executePipeline(final MicroPipelineConfiguration configuration) throws RequiredInputMissingException, 
+	public String executePipeline(final MicroPipelineConfigurationRenamed configuration) throws RequiredInputMissingException, 
 		QueueInitializationFailedException, ComponentInitializationFailedException, PipelineInstantiationFailedException, NonUniqueIdentifierException {
 		
 		///////////////////////////////////////////////////////////

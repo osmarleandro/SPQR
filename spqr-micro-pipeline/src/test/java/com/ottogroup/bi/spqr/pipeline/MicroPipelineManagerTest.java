@@ -29,6 +29,7 @@ import com.ottogroup.bi.spqr.exception.NonUniqueIdentifierException;
 import com.ottogroup.bi.spqr.exception.PipelineInstantiationFailedException;
 import com.ottogroup.bi.spqr.exception.QueueInitializationFailedException;
 import com.ottogroup.bi.spqr.exception.RequiredInputMissingException;
+import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed;
 import com.ottogroup.bi.spqr.repository.ComponentRepository;
 
 /**
@@ -77,7 +78,7 @@ public class MicroPipelineManagerTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineManager#executePipeline(MicroPipelineConfiguration)} being provided null as
+	 * Test case for {@link MicroPipelineManager#executePipeline(MicroPipelineConfigurationRenamed)} being provided null as
 	 * input which must lead to a  {@link RequiredInputMissingException}
 	 */
 	@Test
@@ -93,12 +94,12 @@ public class MicroPipelineManagerTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineManager#executePipeline(MicroPipelineConfiguration)} being provided a
+	 * Test case for {@link MicroPipelineManager#executePipeline(MicroPipelineConfigurationRenamed)} being provided a
 	 * configuration which leads to an exception inside the factory that must be thrown to caller 
 	 */
 	@Test
 	public void testExecutePipeline_withConfigurationLeadingToFactoryException() throws Exception {
-		MicroPipelineConfiguration cfg = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed cfg = new MicroPipelineConfigurationRenamed();
 		cfg.setId("testExecutePipeline_withConfigurationLeadingToFactoryException");
 		
 		MicroPipelineFactory factory = Mockito.mock(MicroPipelineFactory.class);
@@ -117,12 +118,12 @@ public class MicroPipelineManagerTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineManager#executePipeline(MicroPipelineConfiguration)} being provided a
+	 * Test case for {@link MicroPipelineManager#executePipeline(MicroPipelineConfigurationRenamed)} being provided a
 	 * configuration which leads to factory returning null what must be thrown to caller as an {@link PipelineInstantiationFailedException}
 	 */
 	@Test
 	public void testExecutePipeline_withConfigurationLeadingFactoryReturnNull() throws Exception {
-		MicroPipelineConfiguration cfg = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed cfg = new MicroPipelineConfigurationRenamed();
 		cfg.setId("testExecutePipeline_withConfigurationLeadingFactoryReturnNull");
 		
 		MicroPipelineFactory factory = Mockito.mock(MicroPipelineFactory.class);
@@ -141,12 +142,12 @@ public class MicroPipelineManagerTest {
 	}
 
 	/**
-	 * Test case for {@link MicroPipelineManager#executePipeline(MicroPipelineConfiguration)} being provided a
+	 * Test case for {@link MicroPipelineManager#executePipeline(MicroPipelineConfigurationRenamed)} being provided a
 	 * valid configuration twice which leads to a {@link NonUniqueIdentifierException}
 	 */
 	@Test
 	public void testExecutePipeline_withValidConfigurationTwice() throws Exception {
-		MicroPipelineConfiguration cfg = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed cfg = new MicroPipelineConfigurationRenamed();
 		cfg.setId("testExecutePipeline_withValidConfiguration");
 		
 		MicroPipeline pipeline = Mockito.mock(MicroPipeline.class);
@@ -171,12 +172,12 @@ public class MicroPipelineManagerTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineManager#executePipeline(MicroPipelineConfiguration)} being provided a
+	 * Test case for {@link MicroPipelineManager#executePipeline(MicroPipelineConfigurationRenamed)} being provided a
 	 * valid configuration which leads to a registered {@link MicroPipeline} instance
 	 */
 	@Test
 	public void testExecutePipeline_withValidConfiguration() throws Exception {
-		MicroPipelineConfiguration cfg = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed cfg = new MicroPipelineConfigurationRenamed();
 		cfg.setId("testExecutePipeline_withValidConfiguration");
 		
 		MicroPipeline pipeline = Mockito.mock(MicroPipeline.class);
@@ -198,7 +199,7 @@ public class MicroPipelineManagerTest {
 	 */
 	@Test
 	public void testHasPipeline_withExistingId() throws Exception {
-		MicroPipelineConfiguration cfg = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed cfg = new MicroPipelineConfigurationRenamed();
 		cfg.setId("testExecutePipeline_withValidConfiguration");
 		
 		MicroPipeline pipeline = Mockito.mock(MicroPipeline.class);
@@ -234,7 +235,7 @@ public class MicroPipelineManagerTest {
 	 */
 	@Test
 	public void testShutdownPipeline_withNullInput() throws Exception {
-		MicroPipelineConfiguration cfg = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed cfg = new MicroPipelineConfigurationRenamed();
 		cfg.setId("testExecutePipeline_withValidConfiguration");
 		
 		MicroPipeline pipeline = Mockito.mock(MicroPipeline.class);
@@ -261,7 +262,7 @@ public class MicroPipelineManagerTest {
 	 */
 	@Test
 	public void testShutdownPipeline_withValidInput() throws Exception {
-		MicroPipelineConfiguration cfg = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed cfg = new MicroPipelineConfigurationRenamed();
 		cfg.setId("testExecutePipeline_withValidConfiguration");
 		
 		MicroPipeline pipeline = Mockito.mock(MicroPipeline.class);

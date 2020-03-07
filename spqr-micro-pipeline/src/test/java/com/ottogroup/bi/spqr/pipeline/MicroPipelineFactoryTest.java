@@ -33,6 +33,7 @@ import com.ottogroup.bi.spqr.exception.RequiredInputMissingException;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponent;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentConfiguration;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentType;
+import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed;
 import com.ottogroup.bi.spqr.pipeline.component.operator.DelayedResponseOperator;
 import com.ottogroup.bi.spqr.pipeline.component.operator.DelayedResponseOperatorWaitStrategy;
 import com.ottogroup.bi.spqr.pipeline.component.operator.DirectResponseOperator;
@@ -63,13 +64,13 @@ public class MicroPipelineFactoryTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfiguration)} being provided
+	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfigurationRenamed)} being provided
 	 * null as input to processing node id which must lead to a {@link RequiredInputMissingException}
 	 */
 	@Test
 	public void testInstantiatePipeline_withNullProcessingNodeId() throws QueueInitializationFailedException, ComponentInitializationFailedException {
 		try {
-			new MicroPipelineFactory(null, Mockito.mock(ComponentRepository.class)).instantiatePipeline(new MicroPipelineConfiguration(), executorService);
+			new MicroPipelineFactory(null, Mockito.mock(ComponentRepository.class)).instantiatePipeline(new MicroPipelineConfigurationRenamed(), executorService);
 			Assert.fail("Missing required input");
 		} catch(RequiredInputMissingException e) {
 			// expected
@@ -77,7 +78,7 @@ public class MicroPipelineFactoryTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfiguration)} being provided
+	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfigurationRenamed)} being provided
 	 * null as input which must lead to a {@link RequiredInputMissingException}
 	 */
 	@Test
@@ -91,13 +92,13 @@ public class MicroPipelineFactoryTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfiguration)} being provided
+	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfigurationRenamed)} being provided
 	 * an empty configuration as input which must lead to a {@link RequiredInputMissingException}
 	 */
 	@Test
 	public void testInstantiatePipeline_withEmptyInput() throws QueueInitializationFailedException, ComponentInitializationFailedException {
 		try {
-			new MicroPipelineFactory("id", Mockito.mock(ComponentRepository.class)).instantiatePipeline(new MicroPipelineConfiguration(), executorService);
+			new MicroPipelineFactory("id", Mockito.mock(ComponentRepository.class)).instantiatePipeline(new MicroPipelineConfigurationRenamed(), executorService);
 			Assert.fail("Missing required input");
 		} catch(RequiredInputMissingException e) {
 			// expected
@@ -105,7 +106,7 @@ public class MicroPipelineFactoryTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfiguration)} being provided
+	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfigurationRenamed)} being provided
 	 * an empty identifier as input which must lead to a {@link RequiredInputMissingException}
 	 */
 	@Test
@@ -115,7 +116,7 @@ public class MicroPipelineFactoryTest {
 		StreamingMessageQueueConfiguration queueCfg = Mockito.mock(StreamingMessageQueueConfiguration.class);
 		
 		try {
-			MicroPipelineConfiguration cfg = new MicroPipelineConfiguration();
+			MicroPipelineConfigurationRenamed cfg = new MicroPipelineConfigurationRenamed();
 			cfg.setId("");
 			cfg.getComponents().add(componentCfg);
 			cfg.getQueues().add(queueCfg);
@@ -127,7 +128,7 @@ public class MicroPipelineFactoryTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfiguration)} being provided
+	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfigurationRenamed)} being provided
 	 * an empty component cfg list as input which must lead to a {@link RequiredInputMissingException}
 	 */
 	@Test
@@ -136,7 +137,7 @@ public class MicroPipelineFactoryTest {
 		StreamingMessageQueueConfiguration queueCfg = Mockito.mock(StreamingMessageQueueConfiguration.class);
 		
 		try {
-			MicroPipelineConfiguration cfg = new MicroPipelineConfiguration();
+			MicroPipelineConfigurationRenamed cfg = new MicroPipelineConfigurationRenamed();
 			cfg.setId("test");
 			cfg.getQueues().add(queueCfg);
 			new MicroPipelineFactory("id", Mockito.mock(ComponentRepository.class)).instantiatePipeline(cfg, executorService);
@@ -147,7 +148,7 @@ public class MicroPipelineFactoryTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfiguration)} being provided
+	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfigurationRenamed)} being provided
 	 * an empty queue cfg list as input which must lead to a {@link RequiredInputMissingException}
 	 */
 	@Test
@@ -156,7 +157,7 @@ public class MicroPipelineFactoryTest {
 		MicroPipelineComponentConfiguration componentCfg = Mockito.mock(MicroPipelineComponentConfiguration.class);
 		
 		try {
-			MicroPipelineConfiguration cfg = new MicroPipelineConfiguration();
+			MicroPipelineConfigurationRenamed cfg = new MicroPipelineConfigurationRenamed();
 			cfg.setId("test");
 			cfg.getComponents().add(componentCfg);
 			new MicroPipelineFactory("id", Mockito.mock(ComponentRepository.class)).instantiatePipeline(cfg, executorService);
@@ -167,7 +168,7 @@ public class MicroPipelineFactoryTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfiguration)} being provided
+	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfigurationRenamed)} being provided
 	 * a queue cfg list which holds two configurations referenced by the same id which must lead to a {@link QueueInitializationFailedException}
 	 */
 	@Test
@@ -186,7 +187,7 @@ public class MicroPipelineFactoryTest {
 		invalidQueueCfg.setProperties(queueProps);
 		
 		try {
-			MicroPipelineConfiguration cfg = new MicroPipelineConfiguration();
+			MicroPipelineConfigurationRenamed cfg = new MicroPipelineConfigurationRenamed();
 			cfg.setId("test");
 			cfg.getComponents().add(componentCfg);
 			cfg.getQueues().add(validQueueCfg);
@@ -199,7 +200,7 @@ public class MicroPipelineFactoryTest {
 	}	
 
 	/**
-	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfiguration)} being provided
+	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfigurationRenamed)} being provided
 	 * a component cfg which references an unknown component which must lead to a {@link ComponentInitializationFailedException}
 	 */
 	@Test
@@ -224,7 +225,7 @@ public class MicroPipelineFactoryTest {
 		component2Cfg.setVersion("0.0.1");
 		component2Cfg.setToQueue("queue-1");
 		
-		MicroPipelineConfiguration pipelineCfg = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed pipelineCfg = new MicroPipelineConfigurationRenamed();
 		pipelineCfg.setId("test-id");
 		pipelineCfg.getQueues().add(validQueueCfg);
 		pipelineCfg.getComponents().add(component2Cfg);
@@ -246,7 +247,7 @@ public class MicroPipelineFactoryTest {
 	}	
 
 	/**
-	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfiguration)} being provided
+	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfigurationRenamed)} being provided
 	 * a cfg which references the same component twice which must lead to a {@link ComponentInitializationFailedException}
 	 */
 	@Test
@@ -263,7 +264,7 @@ public class MicroPipelineFactoryTest {
 		component1Cfg.setVersion("0.0.1");
 		component1Cfg.setToQueue("queue-1");
 		
-		MicroPipelineConfiguration pipelineCfg = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed pipelineCfg = new MicroPipelineConfigurationRenamed();
 		pipelineCfg.setId("test-id");
 		pipelineCfg.getQueues().add(validQueueCfg);
 		pipelineCfg.getComponents().add(component1Cfg);
@@ -286,7 +287,7 @@ public class MicroPipelineFactoryTest {
 	
 
 	/**
-	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfiguration)} being provided
+	 * Test case for {@link MicroPipelineFactory#instantiatePipeline(MicroPipelineConfigurationRenamed)} being provided
 	 * a cfg which references a component with type null which must lead to a {@link ComponentInitializationFailedException}
 	 */
 	@Test
@@ -303,7 +304,7 @@ public class MicroPipelineFactoryTest {
 		component1Cfg.setVersion("0.0.1");
 		component1Cfg.setToQueue("queue-1");
 		
-		MicroPipelineConfiguration pipelineCfg = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed pipelineCfg = new MicroPipelineConfigurationRenamed();
 		pipelineCfg.setId("test-id");
 		pipelineCfg.getQueues().add(validQueueCfg);
 		pipelineCfg.getComponents().add(component1Cfg);

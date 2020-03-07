@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ottogroup.bi.spqr.pipeline;
+package com.ottogroup.bi.spqr.pipeline.component;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +21,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentConfiguration;
 import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueueConfiguration;
 
 /**
@@ -30,7 +29,7 @@ import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueueConfiguration;
  * @since Mar 6, 2015
  */
 @JsonRootName(value="microPipelineConfiguration")
-public class MicroPipelineConfiguration implements Serializable {
+public class MicroPipelineConfigurationRenamed implements Serializable {
 
 	private static final long serialVersionUID = 3063209038310841880L;
 

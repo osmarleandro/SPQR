@@ -31,10 +31,10 @@ import com.ottogroup.bi.spqr.exception.RequiredInputMissingException;
 import com.ottogroup.bi.spqr.node.resource.MicroPipelineInstantiationResponse;
 import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineShutdownResponse;
 import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineShutdownResponse.MicroPipelineShutdownState;
-import com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineValidationResult;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentConfiguration;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentType;
+import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed;
 import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueueConfiguration;
 
 /**
@@ -127,7 +127,7 @@ public class SPQRNodeClientTest {
 	}
 	
 	/**
-	 * Test case for {@link SPQRNodeClient#instantiatePipeline(com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration)} being
+	 * Test case for {@link SPQRNodeClient#instantiatePipeline(com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed)} being
 	 * provided null to test the validation of incoming configurations. As the validator is tested somewhere else it is not
 	 * necessary to do all in-depth thorough checking again as the constraints do not change
 	 */
@@ -138,7 +138,7 @@ public class SPQRNodeClientTest {
 	}
 
 	/**
-	 * Test case for {@link SPQRNodeClient#updatePipeline(MicroPipelineConfiguration)}
+	 * Test case for {@link SPQRNodeClient#updatePipeline(MicroPipelineConfigurationRenamed)}
 	 * being provided valid input
 	 */
 	@Test
@@ -147,7 +147,7 @@ public class SPQRNodeClientTest {
 		String processingNodeHost = "processing-node-localhost";
 		int processingNodeServicePort = 7070;
 		int processingNodeAdminPort = 7071;
-		MicroPipelineConfiguration sampleConfiguration = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed sampleConfiguration = new MicroPipelineConfigurationRenamed();
 		sampleConfiguration.setId("Test");
 		
 		MicroPipelineComponentConfiguration componentCfg = new MicroPipelineComponentConfiguration();
@@ -190,7 +190,7 @@ public class SPQRNodeClientTest {
 	}
 
 	/**
-	 * Test case for {@link SPQRNodeClient#updatePipeline(MicroPipelineConfiguration)}
+	 * Test case for {@link SPQRNodeClient#updatePipeline(MicroPipelineConfigurationRenamed)}
 	 * being provided valid input
 	 */
 	@Test
@@ -199,7 +199,7 @@ public class SPQRNodeClientTest {
 		String processingNodeHost = "processing-node-localhost";
 		int processingNodeServicePort = 7070;
 		int processingNodeAdminPort = 7071;
-		MicroPipelineConfiguration sampleConfiguration = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed sampleConfiguration = new MicroPipelineConfigurationRenamed();
 		sampleConfiguration.setId("Test");
 		
 		MicroPipelineComponentConfiguration componentCfg = new MicroPipelineComponentConfiguration();

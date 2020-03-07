@@ -21,7 +21,7 @@ import javax.ws.rs.Produces;
 
 import com.codahale.metrics.annotation.Timed;
 import com.ottogroup.bi.spqr.node.resource.MicroPipelineInstantiationResponse;
-import com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration;
+import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed;
 
 
 /**
@@ -39,13 +39,13 @@ public class SPQRPipelineManagementResource {
 
 	
 	/**
-	 * Registers a new processing node with the resource manager. It accepts a {@link MicroPipelineConfiguration} which 
+	 * Registers a new processing node with the resource manager. It accepts a {@link MicroPipelineConfigurationRenamed} which 
 	 * is distributed among cluster nodes.
 	 */
 	@Produces(value = "application/json")
 	@Timed(name = "pipeline-instantiation")
 	@POST
-	public MicroPipelineInstantiationResponse instantiatePipeline(final MicroPipelineConfiguration configuration) {
+	public MicroPipelineInstantiationResponse instantiatePipeline(final MicroPipelineConfigurationRenamed configuration) {
 		
 		//////////////////////////////////////////////////////////////////////////
 		// validate provided configuration

@@ -31,9 +31,9 @@ import com.ottogroup.bi.spqr.node.resource.MicroPipelineInstantiationResponse;
 import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineShutdownResponse;
 import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineShutdownResponse.MicroPipelineShutdownState;
 import com.ottogroup.bi.spqr.pipeline.ExtractedInterface;
-import com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineValidationResult;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineValidator;
+import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed;
 
 /**
  * Communication client used for accessing remote processing nodes for issuing pipeline instantiations
@@ -99,7 +99,7 @@ public class SPQRNodeClient {
 	 * @throws IOException
 	 * @throws RemoteClientConnectionFailedException
 	 */
-	public MicroPipelineInstantiationResponse instantiatePipeline(final MicroPipelineConfiguration pipelineConfiguration) 
+	public MicroPipelineInstantiationResponse instantiatePipeline(final MicroPipelineConfigurationRenamed pipelineConfiguration) 
 			throws IOException, RemoteClientConnectionFailedException {
 				
 		///////////////////////////////////////////////////////
@@ -135,7 +135,7 @@ public class SPQRNodeClient {
 	 * @throws IOException
 	 * @throws RemoteClientConnectionFailedException
 	 */
-	public MicroPipelineInstantiationResponse updatePipeline(final MicroPipelineConfiguration pipelineConfiguration) 
+	public MicroPipelineInstantiationResponse updatePipeline(final MicroPipelineConfigurationRenamed pipelineConfiguration) 
 			throws IOException, RemoteClientConnectionFailedException {
 		
 		///////////////////////////////////////////////////////

@@ -29,6 +29,7 @@ import org.mockito.Mockito;
 
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentConfiguration;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentType;
+import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed;
 import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueueConfiguration;
 
 /**
@@ -39,7 +40,7 @@ import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueueConfiguration;
 public class MicroPipelineValidatorTest {
 
 	/**
-	 * Test case for {@link MicroPipelineValidator#validate(MicroPipelineConfiguration)} being provided null as input
+	 * Test case for {@link MicroPipelineValidator#validate(MicroPipelineConfigurationRenamed)} being provided null as input
 	 */
 	@Test
 	public void testValidate_withNullInput() {
@@ -47,7 +48,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validate(MicroPipelineConfiguration)} being provided an empty components list
+	 * Test case for {@link MicroPipelineValidator#validate(MicroPipelineConfigurationRenamed)} being provided an empty components list
 	 */
 	@Test
 	public void testValidate_withEmptyComponentsList() {
@@ -55,7 +56,7 @@ public class MicroPipelineValidatorTest {
 		List<StreamingMessageQueueConfiguration> mockQueueCfg = Mockito.mock(ArrayList.class);
 		Mockito.when(mockQueueCfg.isEmpty()).thenReturn(false);
 		
-		MicroPipelineConfiguration mockCfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed mockCfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(mockCfg.getQueues()).thenReturn(mockQueueCfg);
 		Mockito.when(mockCfg.getComponents()).thenReturn(null);
 		
@@ -66,7 +67,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validate(MicroPipelineConfiguration)} being provided an empty queues list
+	 * Test case for {@link MicroPipelineValidator#validate(MicroPipelineConfigurationRenamed)} being provided an empty queues list
 	 */
 	@Test
 	public void testValidate_withEmptyQueuesList() {
@@ -74,7 +75,7 @@ public class MicroPipelineValidatorTest {
 		List<MicroPipelineComponentConfiguration> mockComponentCfg = Mockito.mock(ArrayList.class);
 		Mockito.when(mockComponentCfg.isEmpty()).thenReturn(false);
 		
-		MicroPipelineConfiguration mockCfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed mockCfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(mockCfg.getComponents()).thenReturn(mockComponentCfg);
 		Mockito.when(mockCfg.getQueues()).thenReturn(null);
 		
@@ -86,7 +87,7 @@ public class MicroPipelineValidatorTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineValidator#validate(MicroPipelineConfiguration)} being provided a valid configuration
+	 * Test case for {@link MicroPipelineValidator#validate(MicroPipelineConfigurationRenamed)} being provided a valid configuration
 	 */
 	@Test
 	public void testValidate_withValidConfiguration() {
@@ -126,7 +127,7 @@ public class MicroPipelineValidatorTest {
 		emitterCfg.setVersion("test-emitter-version");
 		components.add(emitterCfg);
 		
-		MicroPipelineConfiguration configuration = new MicroPipelineConfiguration();
+		MicroPipelineConfigurationRenamed configuration = new MicroPipelineConfigurationRenamed();
 		configuration.setComponents(components);
 		configuration.setQueues(queues);		
 		

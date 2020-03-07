@@ -22,10 +22,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentConfiguration;
 import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineComponentType;
+import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed;
 import com.ottogroup.bi.spqr.pipeline.queue.StreamingMessageQueueConfiguration;
 
 /**
- * Validates provided {@link MicroPipelineConfiguration} for being compliant with requirement which 
+ * Validates provided {@link MicroPipelineConfigurationRenamed} for being compliant with requirement which 
  * ensure that
  * <ul>
  *   <li>configuration must not be null</li>
@@ -45,13 +46,13 @@ public class MicroPipelineValidator implements ExtractedInterface {
 
 	
 	/**
-	 * Validates the contents of a provided {@link MicroPipelineConfiguration} for being compliant with a required format
+	 * Validates the contents of a provided {@link MicroPipelineConfigurationRenamed} for being compliant with a required format
 	 * and errors that may be inferred from provided contents
 	 * @param configuration
 	 * @return
 	 */
 	@Override
-	public MicroPipelineValidationResult validate(final MicroPipelineConfiguration configuration) {
+	public MicroPipelineValidationResult validate(final MicroPipelineConfigurationRenamed configuration) {
 
 		///////////////////////////////////////////////////////////////////////////////////
 		// validate configuration, components and queues for not being null 
@@ -105,7 +106,7 @@ public class MicroPipelineValidator implements ExtractedInterface {
 	
 	/**
 	 * Validates the provided {@link StreamingMessageQueueConfiguration} for being compliant with basic requirements
-	 * set for queues inside {@link MicroPipelineConfiguration}
+	 * set for queues inside {@link MicroPipelineConfigurationRenamed}
 	 * @param queueCfg
 	 * @param queueIdentifiers
 	 * @return

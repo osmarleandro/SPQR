@@ -27,9 +27,9 @@ import com.ottogroup.bi.spqr.exception.QueueInitializationFailedException;
 import com.ottogroup.bi.spqr.exception.RequiredInputMissingException;
 import com.ottogroup.bi.spqr.node.resource.MicroPipelineInstantiationResponse;
 import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineShutdownResponse.MicroPipelineShutdownState;
-import com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineManager;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineValidationResult;
+import com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed;
 
 /**
  * Test case for {@link MicroPipelineResource}
@@ -53,14 +53,14 @@ public class MicroPipelineResourceTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration)} being
+	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed)} being
 	 * provided an empty pipeline id which must lead to {@link MicroPipelineInstantiationResponse} showing {@link MicroPipelineValidationResult#MISSING_CONFIGURATION}
 	 * as state
 	 */
 	@Test	
 	public void testInstantiatePipeline_withNullPipelineId() throws Exception {
 		
-		MicroPipelineConfiguration cfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed cfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(cfg.getId()).thenReturn(null);
 		MicroPipelineManager microPipelineManager = Mockito.mock(MicroPipelineManager.class);
 		
@@ -74,7 +74,7 @@ public class MicroPipelineResourceTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration)} being
+	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed)} being
 	 * provided an empty pipeline configuration which must lead to {@link MicroPipelineInstantiationResponse} showing {@link MicroPipelineValidationResult#MISSING_CONFIGURATION}
 	 * as state
 	 */
@@ -91,14 +91,14 @@ public class MicroPipelineResourceTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration)} being
+	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed)} being
 	 * provided a pipeline configuration missing a required setting which must lead to {@link MicroPipelineInstantiationResponse} 
 	 * showing {@link MicroPipelineValidationResult#MISSING_CONFIGURATION} as state
 	 */
 	@Test	
 	public void testInstantiatePipeline_withPipelineConfigurationMissingSetting() throws Exception {
 		
-		MicroPipelineConfiguration cfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed cfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(cfg.getId()).thenReturn("testInstantiatePipeline_withPipelineConfigurationMissingSetting");
 		MicroPipelineManager microPipelineManager = Mockito.mock(MicroPipelineManager.class);
 		Mockito.when(microPipelineManager.executePipeline(cfg)).thenThrow(new RequiredInputMissingException("Missing setting"));
@@ -114,14 +114,14 @@ public class MicroPipelineResourceTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration)} being
+	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed)} being
 	 * provided a pipeline configuration that leads to queue init exception which must lead to {@link MicroPipelineInstantiationResponse} 
 	 * showing {@link MicroPipelineValidationResult#QUEUE_INITIALIZATION_FAILED} as state
 	 */
 	@Test	
 	public void testInstantiatePipeline_withQueueInitException() throws Exception {
 		
-		MicroPipelineConfiguration cfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed cfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(cfg.getId()).thenReturn("testInstantiatePipeline_withQueueInitException");
 		MicroPipelineManager microPipelineManager = Mockito.mock(MicroPipelineManager.class);
 		Mockito.when(microPipelineManager.executePipeline(cfg)).thenThrow(new QueueInitializationFailedException("Queue init failed"));
@@ -137,14 +137,14 @@ public class MicroPipelineResourceTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration)} being
+	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed)} being
 	 * provided a pipeline configuration that leads to queue component exception which must lead to {@link MicroPipelineInstantiationResponse} 
 	 * showing {@link MicroPipelineValidationResult#COMPONENT_INITIALIZATION_FAILED} as state
 	 */
 	@Test	
 	public void testInstantiatePipeline_withComponentInitException() throws Exception {
 		
-		MicroPipelineConfiguration cfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed cfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(cfg.getId()).thenReturn("testInstantiatePipeline_withComponentInitException");
 		MicroPipelineManager microPipelineManager = Mockito.mock(MicroPipelineManager.class);
 		Mockito.when(microPipelineManager.executePipeline(cfg)).thenThrow(new ComponentInitializationFailedException("Component init failed"));
@@ -160,14 +160,14 @@ public class MicroPipelineResourceTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration)} being
+	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed)} being
 	 * provided a pipeline configuration that leads to pipeline init exception which must lead to {@link MicroPipelineInstantiationResponse} 
 	 * showing {@link MicroPipelineValidationResult#PIPELINE_INITIALIZATION_FAILED} as state
 	 */
 	@Test	
 	public void testInstantiatePipeline_withPipelineInitException() throws Exception {
 		
-		MicroPipelineConfiguration cfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed cfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(cfg.getId()).thenReturn("testInstantiatePipeline_withPipelineInitException");
 		MicroPipelineManager microPipelineManager = Mockito.mock(MicroPipelineManager.class);
 		Mockito.when(microPipelineManager.executePipeline(cfg)).thenThrow(new PipelineInstantiationFailedException("Pipeline init failed"));
@@ -183,14 +183,14 @@ public class MicroPipelineResourceTest {
 	}
 
 	/**
-	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration)} being
+	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed)} being
 	 * provided a pipeline configuration that leads to npe which must lead to {@link MicroPipelineInstantiationResponse} 
 	 * showing {@link MicroPipelineValidationResult#TECHNICAL_ERROR} as state
 	 */
 	@Test	
 	public void testInstantiatePipeline_withGeneralException() throws Exception {
 		
-		MicroPipelineConfiguration cfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed cfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(cfg.getId()).thenReturn("testInstantiatePipeline_withGeneralException");
 		MicroPipelineManager microPipelineManager = Mockito.mock(MicroPipelineManager.class);
 		Mockito.when(microPipelineManager.executePipeline(cfg)).thenThrow(new NullPointerException("General error"));
@@ -205,14 +205,14 @@ public class MicroPipelineResourceTest {
 		Mockito.verify(microPipelineManager).executePipeline(cfg);
 	}
 	/**
-	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration)} being
+	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed)} being
 	 * provided a pipeline configuration that leads to non-unique id exception which must lead to {@link MicroPipelineInstantiationResponse} 
 	 * showing {@link MicroPipelineValidationResult#NON_UNIQUE_PIPELINE_ID} as state
 	 */
 	@Test	
 	public void testInstantiatePipeline_withNonUniqueIdException() throws Exception {
 		
-		MicroPipelineConfiguration cfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed cfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(cfg.getId()).thenReturn("testInstantiatePipeline_withNonUniqueIdException");
 		MicroPipelineManager microPipelineManager = Mockito.mock(MicroPipelineManager.class);
 		Mockito.when(microPipelineManager.executePipeline(cfg)).thenThrow(new NonUniqueIdentifierException("Non-unique id"));
@@ -228,14 +228,14 @@ public class MicroPipelineResourceTest {
 	}
 	
 	/**
-	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration)} being
+	 * Test case for {@link MicroPipelineResource#instantiatePipeline(String, com.ottogroup.bi.spqr.pipeline.component.MicroPipelineConfigurationRenamed)} being
 	 * provided a valid pipeline configuration which must lead to {@link MicroPipelineInstantiationResponse} 
 	 * showing {@link MicroPipelineValidationResult#OK} as state
 	 */
 	@Test	
 	public void testInstantiatePipeline_withValidConfiguration() throws Exception {
 		
-		MicroPipelineConfiguration cfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed cfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(cfg.getId()).thenReturn("testInstantiatePipeline_withValidConfiguration");
 		MicroPipelineManager microPipelineManager = Mockito.mock(MicroPipelineManager.class);
 		Mockito.when(microPipelineManager.executePipeline(cfg)).thenReturn("testInstantiatePipeline_withValidConfiguration");
@@ -251,14 +251,14 @@ public class MicroPipelineResourceTest {
 	}
 
 	/**
-	 * Test case for {@link MicroPipelineResource#updatePipeline(String, MicroPipelineConfiguration)} being provided the
-	 * configuration of an already existing pipeline which must lead to an update. As the code is similar to {@link MicroPipelineResource#instantiatePipeline(String, MicroPipelineConfiguration)}
+	 * Test case for {@link MicroPipelineResource#updatePipeline(String, MicroPipelineConfigurationRenamed)} being provided the
+	 * configuration of an already existing pipeline which must lead to an update. As the code is similar to {@link MicroPipelineResource#instantiatePipeline(String, MicroPipelineConfigurationRenamed)}
 	 * test cases for invalid input were left out
 	 */
 	@Test
 	public void testUpdatePipeline_withExistingId() throws Exception {
 		
-		MicroPipelineConfiguration cfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed cfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(cfg.getId()).thenReturn("testInstantiatePipeline_withValidConfiguration");
 		MicroPipelineManager microPipelineManager = Mockito.mock(MicroPipelineManager.class);
 		Mockito.when(microPipelineManager.executePipeline(cfg)).thenReturn("testInstantiatePipeline_withValidConfiguration");
@@ -284,17 +284,17 @@ public class MicroPipelineResourceTest {
 	}
 
 	/**
-	 * Test case for {@link MicroPipelineResource#updatePipeline(String, MicroPipelineConfiguration)} being provided a fresh
-	 * configuration. As the code is similar to {@link MicroPipelineResource#instantiatePipeline(String, MicroPipelineConfiguration)}
+	 * Test case for {@link MicroPipelineResource#updatePipeline(String, MicroPipelineConfigurationRenamed)} being provided a fresh
+	 * configuration. As the code is similar to {@link MicroPipelineResource#instantiatePipeline(String, MicroPipelineConfigurationRenamed)}
 	 * test cases for invalid input were left out
 	 */
 	@Test
 	public void testUpdatePipeline_withNonExistingId() throws Exception {
 		
-		MicroPipelineConfiguration cfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed cfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(cfg.getId()).thenReturn("testInstantiatePipeline_withValidConfiguration");
 		
-		MicroPipelineConfiguration anotherCfg = Mockito.mock(MicroPipelineConfiguration.class);
+		MicroPipelineConfigurationRenamed anotherCfg = Mockito.mock(MicroPipelineConfigurationRenamed.class);
 		Mockito.when(anotherCfg.getId()).thenReturn("testInstantiatePipeline_withValidConfiguration_new");
 		
 		MicroPipelineManager microPipelineManager = Mockito.mock(MicroPipelineManager.class);
