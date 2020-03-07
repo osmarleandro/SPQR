@@ -27,7 +27,7 @@ import org.apache.log4j.Logger;
 
 import com.ottogroup.bi.spqr.exception.RemoteClientConnectionFailedException;
 import com.ottogroup.bi.spqr.exception.RequiredInputMissingException;
-import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineInstantiationResponse;
+import com.ottogroup.bi.spqr.node.resource.MicroPipelineInstantiationResponse;
 import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineShutdownResponse;
 import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineShutdownResponse.MicroPipelineShutdownState;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration;
