@@ -22,6 +22,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import com.ottogroup.bi.spqr.node.resource.MicroPipelineInstantiationResponse;
 import org.apache.commons.lang3.StringUtils;
 
 import com.codahale.metrics.annotation.Timed;
@@ -74,7 +75,7 @@ public class MicroPipelineResource {
 	@Produces(value = "application/json")
 	@Timed(name = "pipeline-instantiation")
 	@POST
-	public MicroPipelineInstantiationResponse instantiatePipeline(final MicroPipelineConfiguration configuration) {		
+	public MicroPipelineInstantiationResponse instantiatePipeline(final MicroPipelineConfiguration configuration) {
 
 		if(configuration == null)
 			return new MicroPipelineInstantiationResponse("", MicroPipelineValidationResult.MISSING_CONFIGURATION, ERROR_MSG_PIPELINE_CONFIGURATION_MISSING);

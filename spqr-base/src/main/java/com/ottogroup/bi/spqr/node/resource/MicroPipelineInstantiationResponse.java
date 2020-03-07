@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ottogroup.bi.spqr.node.resource.pipeline;
+package com.ottogroup.bi.spqr.node.resource;
 
 import java.io.Serializable;
 

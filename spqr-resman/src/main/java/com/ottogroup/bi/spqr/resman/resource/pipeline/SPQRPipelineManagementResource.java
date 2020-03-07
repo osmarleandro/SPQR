@@ -20,7 +20,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 import com.codahale.metrics.annotation.Timed;
-import com.ottogroup.bi.spqr.node.resource.pipeline.MicroPipelineInstantiationResponse;
+import com.ottogroup.bi.spqr.node.resource.MicroPipelineInstantiationResponse;
 import com.ottogroup.bi.spqr.pipeline.MicroPipelineConfiguration;
 
 
